@@ -17,3 +17,4 @@ O **Sistema Escolar** foi criado como parte de um trabalho acadêmico para demon
 - **Maria Eduarda De Sena Ruiz**
 - **Matheus Haverroth Tarocco**
 - **Eduardo Luis Alonso**
+- **Luiz Felipe Bonilha Carmona
