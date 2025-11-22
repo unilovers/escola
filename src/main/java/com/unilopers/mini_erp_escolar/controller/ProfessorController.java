@@ -4,8 +4,11 @@ import com.unilopers.mini_erp_escolar.dto.ProfessorRequestDTO;
 import com.unilopers.mini_erp_escolar.dto.ProfessorResponseDTO;
 import com.unilopers.mini_erp_escolar.model.Professor;
 import com.unilopers.mini_erp_escolar.repository.ProfessorRepository;
+import org.aspectj.apache.bcel.classfile.annotation.RuntimeInvisTypeAnnos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/professores")
@@ -29,6 +32,36 @@ public class ProfessorController {
 
         return response;
     }
+
+    //GET (lista todos)
+    @GetMapping
+    public List<ProfessorResponseDTO> listar() {
+        return professorRepository.findAll().stream()
+                .map(prof -> {
+                    ProfessorResponseDTO dto = new ProfessorResponseDTO();
+                    dto.setId((prof.getId()));
+                    dto.setNome(prof.getNome());
+                    dto.setEmail(prof.getEmail());
+                    return dto;
+                })
+                .toList();
+    }
+
+    //GET (por ID)
+    @GetMapping("/{id}")
+    public  ProfessorResponseDTO buscarPorId(@PathVariable Long id) {
+        Professor professor = professorRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Professor não encontrado"));
+
+        ProfessorResponseDTO dto = new ProfessorResponseDTO();
+        dto.setId(professor.getId());
+        dto.setNome(professor.getNome());
+        dto.setEmail(professor.getEmail());
+
+        return  dto;
+    }
+
+
 
 
 }
