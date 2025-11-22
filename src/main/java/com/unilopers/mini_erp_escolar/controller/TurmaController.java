@@ -62,6 +62,9 @@ public class TurmaController {
     //DELETE
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
+        if (!turmaRepository.existsById(id)) {
+            throw new RuntimeException("Turma não encontrada");
+        }
         turmaRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
