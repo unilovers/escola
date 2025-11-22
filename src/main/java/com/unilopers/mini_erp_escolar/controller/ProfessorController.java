@@ -4,7 +4,6 @@ import com.unilopers.mini_erp_escolar.dto.ProfessorRequestDTO;
 import com.unilopers.mini_erp_escolar.dto.ProfessorResponseDTO;
 import com.unilopers.mini_erp_escolar.model.Professor;
 import com.unilopers.mini_erp_escolar.repository.ProfessorRepository;
-import org.aspectj.apache.bcel.classfile.annotation.RuntimeInvisTypeAnnos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
