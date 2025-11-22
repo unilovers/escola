@@ -71,9 +71,11 @@ public class TurmaController {
         TurmaResponseDTO dto = new TurmaResponseDTO();
         dto.setId(turma.getId());
         dto.setNome(turma.getNome());
+        dto.setProfessorId(turma.getProfessor().getId());
         dto.setProfessorNome(turma.getProfessor().getNome());
         return dto;
     }
+
 
 
 
