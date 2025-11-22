@@ -59,6 +59,25 @@ public class TurmaController {
         return ResponseEntity.ok(toResponse(turma));
     }
 
+    //PUT
+    @PutMapping("/{id}")
+    public TurmaResponseDTO update(@PathVariable Long id, @RequestBody TurmaRequestDTO dto) {
+
+        Turma turma = turmaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Turma não encontrada"));
+
+        Professor professor = professorRepository.findById(dto.getProfessorId())
+                .orElseThrow(() -> new RuntimeException("Professor não encontrado"));
+
+        turma.setNome(dto.getNome());
+        turma.setProfessor(professor);
+
+        turmaRepository.save(turma);
+
+        return toResponse(turma);
+    }
+
+
     //DELETE
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
