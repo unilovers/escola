@@ -39,4 +39,25 @@ public class TurmaController {
         return ResponseEntity.ok(toResponse(turma));
     }
 
+    //LIST ALL
+    @GetMapping
+    public ResponseEntity<List<TurmaResponseDTO>> list() {
+        List<TurmaResponseDTO> lista = turmaRepository.findAll()
+                .stream()
+                .map(this::toResponse)
+                .toList();
+
+        return ResponseEntity.ok(lista);
+    }
+
+    //GET BY ID
+    @GetMapping("/{id}")
+    public ResponseEntity<TurmaResponseDTO> getById(@PathVariable Long id) {
+        Turma turma = turmaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Turma não encontrada"));
+
+        return ResponseEntity.ok(toResponse(turma));
+    }
+
+
 }
