@@ -59,12 +59,22 @@ public class TurmaController {
         return ResponseEntity.ok(toResponse(turma));
     }
 
-    // DELETE
+    //DELETE
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         turmaRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    //Converter Turma → DTO
+    private TurmaResponseDTO toResponse(Turma turma) {
+        TurmaResponseDTO dto = new TurmaResponseDTO();
+        dto.setId(turma.getId());
+        dto.setNome(turma.getNome());
+        dto.setProfessorNome(turma.getProfessor().getNome());
+        return dto;
+    }
+
 
 
 }
